@@ -18,3 +18,4 @@ output: html_document
     + Select modify and select the series **annual** and the box for **select all years**
     + Click downland and save output as `pce.csv`.
 3. We are only interested in the first line for `Personal Consumption Expenditures (PCE)`.
+4. Filter years to include range 1969 to 2014.
