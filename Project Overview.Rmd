@@ -5,4 +5,16 @@ date: "February 8, 2016"
 output: html_document
 ---
 
-###CA4 - Personal Income and Employment by Major Component
+####CA4 - Personal Income and Employment by Major Component
+1. Upload data from `CA4_1969_2014_ALL.csv`.
+2. Filter based on `GeoFIPS` up to `49007` and `LineCode`(s)  
+
+####Table 2.3.4 (PCE) - Price Indexes for Personal Consumption Expenditures by Major Type of Product
+1. This table can be found under the **Interactive Data** tab.
+    + Select **GDP and Personal Income** under the **National** header.
+    + On the next page select **Begin using the data...**
+    + Under the **NIPA Tables** select **Section 2** and search for **Table 2.3.4**
+2. You will need to customize the data filters to include data all the back from 1947 to the present.
+    + Select modify and select the series **annual** and the box for **select all years**
+    + Click downland and save output as `pce.csv`.
+3. We are only interested in the first line for `Personal Consumption Expenditures (PCE)`.

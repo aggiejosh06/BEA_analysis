@@ -17,7 +17,12 @@ ALL <- ALL[-seq(nrow(ALL), by = -1, len = 4), ]
 layer_one <- ALL %>% filter(GeoFIPS %in% "00000")
 layer_two_array <- paste("0",seq(from = 0, to = 9999), sep = "")
 layer_two <- ALL %>% filter(GeoFIPS %in% layer_two_array)
-rm(layer_two_array)
 layer_three <- ALL %>% filter(GeoFIPS %in% seq(from = 10000, to = 49007, by = 1))
 ALL <- rbind(layer_one, layer_two, layer_three) 
+rm(layer_one, layer_two, layer_two_array, layer_three)
+ALL <- droplevels(ALL)
+
+ALL <- ALL %>% filter(LineCode %in% c(10,11,12,20,30,50,7010,7020))
+
+
         
