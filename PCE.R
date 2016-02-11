@@ -1,5 +1,8 @@
-require(dplyr)
+# Overview --------------------
+# Creates price index
+
 setwd("~/client work/wayne day/input/PCE/")
+require(dplyr)
 
 pce <- read.csv("pce.csv", header = TRUE, skip = 4, nrows = 1)
 pce <- pce %>% select(-c(1:2))
