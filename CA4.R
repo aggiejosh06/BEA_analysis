@@ -16,14 +16,14 @@ linecode <- factor(c("10","11","12","20","30","50","7010","7020","47","47 / 20",
 # Statewide and national GeoFIPS
 ALL <- read.csv("CA4_1969_2014_ALL.csv", header = TRUE)
 ALL <- ALL[-seq(nrow(ALL), by = -1, len = 4), ]
-#ALL <- ALL %>% filter(GeoFIPS %in% geofips)
-#ALL <- droplevels(ALL)
+# ALL <- ALL %>% filter(GeoFIPS %in% geofips)
+# ALL <- droplevels(ALL)
 
-#ALL_geofips <- unique(ALL$GeoFIPS)
-#Returns vector checking which geofips are found in ALL_geofips.
-#ALL_geofips_used <- ALL_geofips %in% geofips
-#ALL_geofips <- ALL_geofips[ALL_geofips_used]
-#ALL_geofips_used_sum <- sum(ALL_geofips_used)
+# ALL_geofips <- unique(ALL$GeoFIPS)
+# Returns vector checking which geofips are found in ALL_geofips.
+# ALL_geofips_used <- ALL_geofips %in% geofips
+# ALL_geofips <- ALL_geofips[ALL_geofips_used]
+# ALL_geofips_used_sum <- sum(ALL_geofips_used)
 
 # MSAs
 MSA <- read.csv("CA4_1969_2014_MSA.csv", header = TRUE)
@@ -65,7 +65,7 @@ CA4_raw <- rbind(ALL, MSA, MDIV, CSA)
 
 # Data Transformation --------------------
 
-CA4_raw <- CA4_raw %>% filter(GeoFIPS %in% geofips, LineCode %in% linecode)
+CA4_raw <- CA4_raw %>% filter(GeoFIPS %in% geofips, LineCode %in% linecode) %>% arrange(GeoFIPS, LineCode)
 CA4_raw[ , c(1:7)] <- lapply(CA4_raw[ , c(1:7)], as.factor)
 CA4_raw[ , c(8:53)] <- sapply(CA4_raw[ , c(8:53)], as.numeric)
 
@@ -73,8 +73,8 @@ for(i in 1:53) {
         colnames(CA4_raw)[i] <- gsub("X","", colnames(CA4_raw[,c(1:53)]))[i]
 }
 
-# CA4_raw_geofips <- unique(CA4_raw$GeoFIPS)
-# CA4_raw_LineCode <- unique(CA4_raw$LineCode)
+CA4_raw_geofips <- unique(CA4_raw$GeoFIPS)
+CA4_raw_linecodes <- unique(CA4_raw$LineCode)
   
 # Notes --------------------
 
