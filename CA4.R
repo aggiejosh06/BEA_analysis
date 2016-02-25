@@ -73,8 +73,8 @@ for(i in 1:53) {
         colnames(CA4_raw)[i] <- gsub("X","", colnames(CA4_raw[,c(1:53)]))[i]
 }
 
-CA4_raw_geofips <- unique(CA4_raw$GeoFIPS)
-CA4_raw_linecodes <- unique(CA4_raw$LineCode)
+# CA4_raw_geofips <- unique(CA4_raw$GeoFIPS)
+# CA4_raw_linecodes <- unique(CA4_raw$LineCode)
   
 # Notes --------------------
 
