@@ -32,3 +32,5 @@ CA4_adjusted$LineCode <- factor(CA4_adjusted$LineCode, levels = linecode)
 CA4_adjusted <- CA4_adjusted %>% arrange(GeoFIPS, LineCode)
 
 rm(inf_linecodes, CA4_raw_untouched, CA4_raw_to_be_inf, CA4_raw_inflated)
+
+# Notes --------------------

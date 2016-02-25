@@ -44,5 +44,12 @@ sum((all_data_inf_adj_filter[,c(1:43)] -CA4_adjusted[, c(8:50)] != 0))
 
 # Note: Wayne's output is rounded to the nearest integer.
 
+# Year over year analysis --------------------
+YoY_wayne <- read.xls("CA4_Final.xls", sheet = 14, perl = "/usr/bin/perl", stringsAsFactors = FALSE)
+YoY_wayne$LineCode <- factor(YoY_wayne$LineCode, levels = linecode)
+YoY_wayne_test <- YoY_wayne %>% filter(GeoFIPS == 0) %>% arrange(LineCode)
+
+YoY_wayne_test[, c(9:53)] == YoY[c(1:27), c(9:53)]
+
 
 # Data Integrity Testing --------------------

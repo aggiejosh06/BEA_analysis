@@ -1,5 +1,5 @@
 # Overview --------------------
-# This script is designed to pull data entries directly from the CA4 files provided by the BEA website.
+# This script is designed to extract data from the CA4 files provided by the BEA website.
 
 setwd("~/client work/wayne day/input/CA4/")
 require(dplyr)
@@ -62,6 +62,7 @@ CSA <- CSA[-seq(nrow(CSA), by = -1, len = 4), ]
 
 # Combines tables above
 CA4_raw <- rbind(ALL, MSA, MDIV, CSA)
+rm(ALL, MSA, MDIV, CSA)
 
 # Data Transformation --------------------
 

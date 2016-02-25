@@ -16,11 +16,11 @@ lc20 <- CA4_raw %>% filter(LineCode == 20)
 outcome <- ((lc10[, c(8:53)] - lc47[, c(8:53)]) / lc20[, c(8:53)]) * 1000
 line_code <- data.frame(LineCode = rep(as.factor("(10 - 47) / 20"), times = nrow(lc10)))
 description <- data.frame(Description = rep("Personal income LESS personal current transfers DIVIDED by population", times = nrow(lc10)))
-custom_one <- cbind(lc10[,c(1:4)], line_code, lc10[, c(6)], description, outcome)
-colnames(custom_one)[6] <- "IndustryClassification"
+one <- cbind(lc10[,c(1:4)], line_code, lc10[, c(6)], description, outcome)
+colnames(one)[6] <- "IndustryClassification"
 rm(lc10, lc47, lc20, outcome, line_code, description)
 
-# 63 - 36 + 42 --------------------
+# (63 - 36 + 42) --------------------
 # TOTAL of Other Income
 
 lc60 <- CA4_raw %>% filter(LineCode == 60)
@@ -28,10 +28,10 @@ lc36 <- CA4_raw %>% filter(LineCode == 36)
 lc42 <- CA4_raw %>% filter(LineCode == 42)
 
 outcome <- (lc60[, c(8:53)] - lc36[, c(8:53)] + lc42[, c(8:53)])
-line_code <- data.frame(LineCode = rep(as.factor("63 - 36 + 42"), times = nrow(lc60)))
+line_code <- data.frame(LineCode = rep(as.factor("(60 - 36 + 42)"), times = nrow(lc60)))
 description <- data.frame(Description = rep("TOTAL of other income", times = nrow(lc60)))
-custom_two <- cbind(lc60[,c(1:4)], line_code, lc60[, c(6)], description, outcome)
-colnames(custom_two)[6] <- "IndustryClassification"
+two <- cbind(lc60[,c(1:4)], line_code, lc60[, c(6)], description, outcome)
+colnames(two)[6] <- "IndustryClassification"
 rm(lc60, lc36, lc42, outcome, description)
 
 # (63 - 36 + 42) / 20 --------------------
@@ -43,10 +43,10 @@ lc42 <- CA4_raw %>% filter(LineCode == 42)
 lc20 <- CA4_raw %>% filter(LineCode == 20)
 
 outcome <- ((lc60[, c(8:53)] - lc36[, c(8:53)] + lc42[, c(8:53)]) / lc20[, c(8:53)]) * 1000
-line_code <- data.frame(LineCode = rep(as.factor("(63 - 36 + 42) / 20"), times = nrow(lc60)))
+line_code <- data.frame(LineCode = rep(as.factor("(60 - 36 + 42) / 20"), times = nrow(lc60)))
 description <- data.frame(Description = rep("TOTAL of other income DIVIDED by Population", times = nrow(lc60)))
-custom_three <- cbind(lc60[,c(1:4)], line_code, lc60[, c(6)], description, outcome)
-colnames(custom_three)[6] <- "IndustryClassification"
+three <- cbind(lc60[,c(1:4)], line_code, lc60[, c(6)], description, outcome)
+colnames(three)[6] <- "IndustryClassification"
 rm(lc60, lc36, lc42, lc20, outcome, description)
 
 # 10 - 47 --------------------
@@ -59,8 +59,8 @@ lc47 <- CA4_raw %>% filter(LineCode == 47)
 outcome <- lc10[, c(8:53)] - lc47[, c(8:53)]
 line_code <- data.frame(LineCode = rep(as.factor("10 - 47"), times = nrow(lc10)))
 description <- data.frame(Description = rep("Personal income LESS personal current transfers", times = nrow(lc10)))
-custom_four <- cbind(lc10[,c(1:4)], line_code, lc10[, c(6)], description, outcome)
-colnames(custom_four)[6] <- "IndustryClassification"
+four <- cbind(lc10[,c(1:4)], line_code, lc10[, c(6)], description, outcome)
+colnames(four)[6] <- "IndustryClassification"
 rm(lc10, lc47, outcome, line_code, description)
 
 # 35 / 7010 --------------------
@@ -72,8 +72,8 @@ lc7010 <- CA4_raw %>% filter(LineCode == 7010)
 outcome <- (lc35[, c(8:53)] / lc7010[, c(8:53)]) * 1000
 line_code <- data.frame(LineCode = rep(as.factor("35 / 7010"), times = nrow(lc35)))
 description <- data.frame(Description = rep("Earnings by place of work DIVIDED BY Total Employment", times = nrow(lc35)))
-custom_five <- cbind(lc35[,c(1:4)], line_code, lc35[, c(6)], description, outcome)
-colnames(custom_five)[6] <- "IndustryClassification"
+five <- cbind(lc35[,c(1:4)], line_code, lc35[, c(6)], description, outcome)
+colnames(five)[6] <- "IndustryClassification"
 rm(lc35, lc7010, outcome, line_code, description)
 
 # 46 / 20 --------------------
@@ -149,14 +149,21 @@ lc50 <- CA4_raw %>% filter(LineCode == 50)
 lc7020 <- CA4_raw %>% filter(LineCode == 7020)
 
 outcome <- (lc50[, c(8:53)] / lc7020[, c(8:53)]) * 1000
-line_code <- data.frame(LineCode = rep(as.factor("35 / 7010"), times = nrow(lc50)))
+line_code <- data.frame(LineCode = rep(as.factor("50 / 7020"), times = nrow(lc50)))
 description <- data.frame(Description = rep("Wages and salaries DIVIDED BY wages and salary employment", times = nrow(lc50)))
 eleven <- cbind(lc50[,c(1:4)], line_code, lc50[, c(6)], description, outcome)
 colnames(eleven)[6] <- "IndustryClassification"
 rm(lc50, lc7020, outcome, line_code, description)
 
 # Combines all custom fields
-CA4_custom <- rbind(custom_one, custom_two, custom_three, custom_four, custom_five, six, seven, eight, nine, ten, eleven)
+CA4_custom <- rbind(one, two, three, four, five, six, seven, eight, nine, ten, eleven)
+
+rm(one, two, three, four, five, six, seven, eight, nine, ten, eleven)
+
+# This is for comparison purposes
+CA4_total <- rbind(CA4_raw, CA4_custom)
+CA4_total2$LineCode <- factor(CA4_total$LineCode, levels = linecode)
+CA4_total <- CA4_total %>% arrange(GeoFIPS, LineCode)
 
 # Notes --------------------
 # Does 35 / 7010 really need to be multiplied by 1,000?
